@@ -40,34 +40,40 @@
           style="margin-left: 10px; font-weight: bold; color: #f60"
           @click="handleFilter('listSearchKey')"
         >
-          {{ $t("dashboard.search") }}
+          {{ $t("dashboard.check") }}
         </el-button>
       </el-form-item>
       <el-button
         icon="el-icon-plus"
         style="margin-left: 10px; font-weight: bold; color: #f60"
-        @click="handleCreate"
       />
+        <!-- @click="handleCreate" -->
     </el-form>
-    <publicUser-Form
+    <!-- <publicUser-Form
       v-if="serachDataListShow"
-      :member-data-list="memberDataList"
+      :member-data-list="accountInfoData"
+    /> -->
+    <complex-table 
+    v-if="serachDataListShow"
+    :account-info-data="accountInfoData"
     />
   </div>
 </template>
 
 <script>
-import { getRoles } from "@/api/role";
+import { getAccountInfo } from "@/api/role";
 import PublicUserForm from "@/views/components/publicUserForm.vue";
+import ComplexTable from "@/views/table/complex-table.vue";
 
 export default {
   name: "AdvancedAccount",
   components: {
     PublicUserForm,
+    ComplexTable,
   },
   data() {
     return {
-      memberDataList: {},
+      accountInfoData: [],
       listSearchKey: {
         searchKey: "",
         region: "",
@@ -106,10 +112,10 @@ export default {
   methods: {
     // 獲取表格資料
     getMemberList() {
-      getRoles().then((res) => {
-        if (res.code === 20000) {
-          this.memberDataList = res.data;
-          this.serachDataListShow = this.memberDataList !== {};
+      getAccountInfo().then((res) => {
+        if (res.code === 20000) { 
+          this.accountInfoData.push(res.data[0]);
+          this.serachDataListShow = this.accountInfoData !== {};
         }
       });
     },
@@ -118,7 +124,9 @@ export default {
       if (this.listSearchKey.searchKey.trim() === "")
         this.listSearchKey.searchKey = "";
       this.$refs[rules].validate((valid) => {
-        if (!valid) return;
+        if (!valid){
+          return
+        } 
         this.getMemberList();
       });
     },

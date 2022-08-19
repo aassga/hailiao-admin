@@ -31,14 +31,18 @@
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
         <el-button
-          type="info"
           icon="el-icon-search"
-          style="margin-left: 10px"
+          style="margin-left: 10px; font-weight: bold; color: #f60"
           @click="handleFilter('listSearchKey')"
         >
-          {{ $t("dashboard.search") }}
+          {{ $t("dashboard.check") }}
         </el-button>
       </el-form-item>
+      <el-button
+        icon="el-icon-plus"
+        style="margin-left: 10px; font-weight: bold; color: #f60"
+        @click="handleCreate"
+      />
     </el-form>
     <publicUser-Form
       v-if="serachDataListShow"

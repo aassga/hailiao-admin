@@ -85,48 +85,21 @@ export const asyncRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/permission',
-  //   component: Layout,
-  //   redirect: '/permission/page',
-  //   alwaysShow: true, // will always show the root menu
-  //   name: 'Permission',
-  //   meta: {
-  //     title: 'permission',
-  //     icon: 'education'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'page',
-  //       component: () => import('@/views/permission/page'),
-  //       name: 'PagePermission',
-  //       meta: {
-  //         title: 'pagePermission'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/storeManagement',
-  //   component: Layout,
-  //   redirect: '/storeManagement/page',
-  //   alwaysShow: true, // will always show the root menu
-  //   name: 'storeManagement',
-  //   meta: {
-  //     title: 'storeManagement',
-  //     icon: 'money'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'page',
-  //       component: () => import('@/views/storeManagement/page'),
-  //       name: 'PageStoreManagement',
-  //       meta: {
-  //         title: 'PageStoreManagement'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/dialogueRecordQuery',
+    component: Layout,
+    children: [
+      {
+        path: 'page',
+        component: () => import('@/views/dialogueRecordQuery/page'),
+        name: 'PageDialogueRecordQuery',
+        meta: {
+          title: 'PageDialogueRecordQuery',
+          icon: 'message'
+        }
+      }
+    ]
+  },  
   {
     path: '/certificationManagement',
     component: Layout,

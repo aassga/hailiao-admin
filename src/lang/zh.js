@@ -14,6 +14,8 @@ export default {
     profile: '个人中心',
     advancedGroup: '进阶群组管理',
     PageAdvancedGroup:'进阶群组管理',
+    dialogueRecordQuery:'对话纪录查询',
+    PageDialogueRecordQuery:'对话纪录查询',
     certificationManagement:'認證管理',
     certificationManagementList:'待審查個人帳號列表',
   },
@@ -113,4 +115,12 @@ export default {
     changed_to_unaudited_status:'變更為未審查狀態',
     change_to_audited_status:'變更為已審查狀態',
   },
+  table:{
+    create_an_account:"创建帐号",
+    group_name:"群组名称",
+    group_admin:"群主帐号",
+    group_admin_id:"群主帐号ID",
+    group_info:"群组资讯",
+    check:"查看",
+  }
 }

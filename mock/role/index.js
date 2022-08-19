@@ -122,7 +122,14 @@ const memberList = {
     TINSSSGSIS:'SSS/7533967',
     real_name:'王大同',
 };
-
+const accountInfo = [
+  {
+    account:"SL007Wester",
+    groupName:"我是群組我是群組我是群組我是群組",
+    accountNumber:"SL220727008",
+    accountNumberID:"Tiger9527",
+  }
+]
 
 module.exports = [
   // mock get all routes form server
@@ -145,6 +152,18 @@ module.exports = [
       return {
         code: 20000,
         data: roles,
+        status: 'success'
+      }
+    }
+  },
+  // mock get all roles form server
+  {
+    url: '/vue-element-admin/accountInfo',
+    type: 'get',
+    response: _ => {
+      return {
+        code: 20000,
+        data: accountInfo,
         status: 'success'
       }
     }

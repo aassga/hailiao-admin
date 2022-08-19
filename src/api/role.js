@@ -15,6 +15,13 @@ export function getRoles(params) {
   })
 }
 
+export function getAccountInfo(params) {
+  return request({
+    url: '/vue-element-admin/accountInfo',
+    method: 'get',
+    params
+  })
+}
 export function getCertification(data) {
   return request({
     url: '/vue-element-admin/certification',
