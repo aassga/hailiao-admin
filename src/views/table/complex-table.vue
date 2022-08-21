@@ -70,7 +70,6 @@ export default {
       }, 700)
     },
     handleCheck(row) {
-      console.log(row)
       this.$emit('checkData',row)
     },
   }

@@ -7,9 +7,27 @@
     >
       {{ $t("dashboard.return_back") }}
     </el-button>
-    <span class="green-text pl15">{{accountMemberInfo.accountNumber}}</span>
+    <span class="green-text pl15"> {{statusType === 'check' ?accountMemberInfo.accountNumber : $t("dashboard.transcend_advanced_group_account")}}</span>
     <div class="form-table">
-      <!-- 創建帳號 -->
+      <template v-if="statusType === 'add'">
+        <!-- 創建帳號 -->
+        <div class="el-form">
+          <span>{{ $t("dashboard.create_an_account") }}</span>
+          <span>{{ accountMemberInfo.create_an_account }}</span>
+        </div>
+        <!-- 帳號類別 -->
+        <div class="el-form">
+          <span>{{ $t("dashboard.account_type") }}</span>
+          <span>
+            <el-select v-model="addAccount.accountType" :placeholder="$t('dashboard.please_select_create_account_category')">
+              <el-option :label="$t('dashboard.advanced_group_account')" value="advancedGroup"></el-option>
+              <el-option :label="$t('dashboard.advanced_sales_account')" value="advancedSales"></el-option>
+            </el-select>  
+          </span>
+        </div>
+      </template>
+      
+      <!-- 帳號 -->
       <div class="el-form">
         <span>{{ $t("dashboard.accountNumber") }}</span>
         <span>{{ accountMemberInfo.accountNumber }}</span>
@@ -24,61 +42,64 @@
         <span>{{ $t("dashboard.nick_name") }}</span>
         <span>{{ accountMemberInfo.nickName }}</span>
       </div>
-      <!-- 所屬群組 -->
-      <div class="el-form">
-        <span>{{ $t("dashboard.group") }}</span>
-        <span>
-          <el-button type="primary" size="mini">
-            {{ $t('dashboard.check') }}
-          </el-button>
-        </span>
-      </div>
-      <!-- 變更密碼 -->
-      <div class="el-form">
-        <span>{{ $t("dashboard.edit_password") }}</span>
-        <span v-if="accountRevise">
-          <el-input v-model="accountMemberInfo.password" show-password class="edit-input" size="mini"  />
-        </span>
-        <span>
-          <template v-if="accountRevise">
-           <el-button
-              class="cancel-btn"
+      <template v-if="statusType !== 'add'">
+        <!-- 所屬群組 -->
+        <div class="el-form">
+          <span>{{ $t("dashboard.group") }}</span>
+          <span>
+            <el-button type="primary" size="mini">
+              {{ $t('dashboard.check') }}
+            </el-button>
+          </span>
+        </div>
+        <!-- 變更密碼 -->
+        <div class="el-form">
+          <span>{{ $t("dashboard.edit_password") }}</span>
+          <span v-if="accountRevise">
+            <el-input v-model="accountMemberInfo.password" show-password class="edit-input" size="mini"  />
+          </span>
+          <span>
+            <template v-if="accountRevise">
+            <el-button
+                class="cancel-btn"
+                size="mini"
+                type="warning"
+                @click="cancelEdit()"
+              >
+                {{ $t('dashboard.cancel') }}
+            </el-button>
+            <el-button
+              type="success"
               size="mini"
-              type="warning"
-              @click="cancelEdit()"
+              @click="confirmEdit(accountRevise)"
             >
-              {{ $t('dashboard.cancel') }}
-          </el-button>
-          <el-button
-            type="success"
-            size="mini"
-            @click="confirmEdit(accountRevise)"
-          >
-            {{ $t('dashboard.store') }}
-          </el-button>
-          </template>
+              {{ $t('dashboard.store') }}
+            </el-button>
+            </template>
 
-          <el-button
-            v-else
-            type="primary"
-            size="mini"
-            @click="accountRevise=!accountRevise"
-          >
-            {{ $t('dashboard.revise') }}
-          </el-button>
-        </span>
-      </div>
-      <!-- 禁用帳號 -->
-      <div class="el-form">
-        <span>{{ $t("dashboard.disable_account") }}</span>
-        <span>
-          <el-switch
-            v-model="disableAccount"
-            active-color="#13ce66"
-            inactive-color="#ff4949">
-          </el-switch>
-        </span>
-      </div>
+            <el-button
+              v-else
+              type="primary"
+              size="mini"
+              @click="accountRevise=!accountRevise"
+            >
+              {{ $t('dashboard.revise') }}
+            </el-button>
+          </span>
+        </div>
+        <!-- 禁用帳號 -->
+        <div class="el-form">
+          <span>{{ $t("dashboard.disable_account") }}</span>
+          <span>
+            <el-switch
+              v-model="disableAccount"
+              active-color="#13ce66"
+              inactive-color="#ff4949">
+            </el-switch>
+          </span>
+        </div>
+      </template>
+
     </div>
 
   </div>
@@ -92,6 +113,9 @@ export default {
     accountMemberInfo: {
       type: Object,
     },
+    statusType:{
+      type:String
+    }
   },
   data() {
     return {
@@ -99,6 +123,9 @@ export default {
       routerKey: "",
       disableAccount: true,
       accountRevise:false,
+      addAccount:{
+        accountType:'',
+      }
     };
   },
   created() {

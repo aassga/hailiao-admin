@@ -48,7 +48,12 @@ export default {
     edit_password:'变更密码',
     disable_account:'禁用帐号',
     please_enter_the_full_account_number: '请输入要查询的资料',
-
+    transcend_advanced_group_account:'创见进阶群组帐号',
+    create_an_account:'创建帐号', 
+    account_type:'帐号类别',
+    please_select_create_account_category:'请选择创建帐号类别',
+    advanced_group_account:'进阶群组帐号',
+    advanced_sales_account:'进阶销售帐号',
   },
   certification:{
     search: '搜索',

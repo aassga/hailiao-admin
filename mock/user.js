@@ -5,6 +5,9 @@ const tokens = {
   },
   editor: {
     token: 'editor-token'
+  },
+  wester: {
+    token: 'wester-token'
   }
 }
 
@@ -20,6 +23,12 @@ const users = {
     introduction: 'I am an editor',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     name: 'Normal Editor'
+  },
+  'wester-token': {
+    roles: ['wester'],
+    introduction: 'I am an wester',
+    avatar: 'https://memeprod.ap-south-1.linodeobjects.com/user-gif-post/1653962234848.gif',
+    name: 'wester'
   }
 }
 

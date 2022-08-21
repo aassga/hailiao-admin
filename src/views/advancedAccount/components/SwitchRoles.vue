@@ -47,8 +47,8 @@
         <el-button
           icon="el-icon-plus"
           style="margin-left: 10px; font-weight: bold; color: #f60"
+          @click="addAccount"
         />
-          <!-- @click="handleCreate" -->
       </el-form> 
       <complex-table 
       v-if="accountInfoData.length !==0"
@@ -60,6 +60,7 @@
     <div v-else>
       <publicUser-Form
         @returnBack="returnBack"
+        :status-type="statusType"
         :account-member-info="accountMemberInfo"
       />
     </div>
@@ -79,6 +80,7 @@ export default {
   },
   data() {
     return {
+      statusType:'',
       accountInfoData: [],
       accountMemberInfo:{},
       listSearchKey: {
@@ -125,7 +127,12 @@ export default {
     },
     checkData(data){
       this.accountMemberInfo = data
-      this.checkAccountInfo = JSON.stringify(data) !== '{}'
+      this.checkAccountInfo = JSON.stringify(data) !== "{}"
+      this.statusType = "check"
+    },
+    addAccount(){
+      this.checkAccountInfo = true
+      this.statusType = "add"
     },
     // 獲取表格資料
     getMemberList() {
