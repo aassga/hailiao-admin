@@ -67,7 +67,7 @@ export const asyncRoutes = [
           title: 'PageAdvancedAccount',
           icon: 'badge',
         }
-      }
+      },
     ]
   },
   {

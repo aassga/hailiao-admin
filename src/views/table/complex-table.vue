@@ -11,22 +11,22 @@
     >
       <el-table-column :label="$t('table.create_an_account')" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.account }}</span>
+          <span>{{ row.create_an_account }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.group_name')" min-width="230px">
-        <template slot-scope="{row}">
-          <span>{{ row.groupName }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('table.group_admin')" align="center" width="150px">
+      <el-table-column :label="$t('table.accountNumber')" min-width="230px">
         <template slot-scope="{row}">
           <span>{{ row.accountNumber }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.group_admin_id')" class-name="status-col" width="150px">
+      <el-table-column :label="$t('table.accountNumber_id')" align="center" width="150px">
         <template slot-scope="{row}">
           <span>{{ row.accountNumberID }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('table.nick_name')" class-name="status-col" width="150px">
+        <template slot-scope="{row}">
+          <span>{{ row.nickName }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.group_info')" align="center" width="150px" class-name="small-padding fixed-width">
@@ -50,7 +50,6 @@ export default {
   },
   watch:{
     accountInfoData(val){
-      console.log(val)
       val ? this.getAccountInfoData():false
     }
   },
@@ -68,10 +67,11 @@ export default {
       this.listLoading = true
       setTimeout(() => {
         this.listLoading = false
-      }, 1.5 * 1000)
+      }, 700)
     },
     handleCheck(row) {
-
+      console.log(row)
+      this.$emit('checkData',row)
     },
   }
 }

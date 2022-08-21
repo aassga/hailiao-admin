@@ -12,6 +12,8 @@ export default {
   components: {
     SwitchRoles
   },
+  mounted() {
+  },
   methods: {
     handleRolesChange() {
       this.$router.push({ path: '/advancedAccount/index?' + +new Date() })

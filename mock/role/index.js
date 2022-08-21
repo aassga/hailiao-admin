@@ -124,10 +124,18 @@ const memberList = {
 };
 const accountInfo = [
   {
-    account:"SL007Wester",
-    groupName:"我是群組我是群組我是群組我是群組",
+    create_an_account:"SL007Wester",
     accountNumber:"SL220727008",
     accountNumberID:"Tiger9527",
+    nickName:"9527华安",
+    password:"13466752",
+  },
+  {
+    create_an_account:"SL008Erick",
+    accountNumber:"SL220727009",
+    accountNumberID:"Erick0726",
+    nickName:"ErickSS",
+    password:"Test12",
   }
 ]
 
